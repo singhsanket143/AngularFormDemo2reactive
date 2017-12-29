@@ -31,8 +31,18 @@
               [value]="gender">{{ gender }}
           </label>
         </div>
-        <span *ngIf="!signUpForm.valid && signUpForm.touched" class="help-block">Please enter a valid data</span>
+        <hr>
+        <div formArrayName="hobbies">
+          <h4>Your hobbies</h4>
+          <button class="btn btn-warning" type="button" (click)="onAddHobby()">Add Hobby</button>
+          <br>
+          <div class="form-group" *ngFor="let hobbyControl of signUpForm.get('hobbies').controls; let i = index;">
+            <input type="text" class="form-control" [formControlName]="i">
+          </div>
+        </div>
 
+        <span *ngIf="!signUpForm.valid && signUpForm.touched" class="help-block">Please enter a valid data</span>
+        <hr>
         <button class="btn btn-primary" type="submit">Submit</button>
       </form>
     </div>
